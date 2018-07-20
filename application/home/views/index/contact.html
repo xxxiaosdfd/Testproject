@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>联系我们</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Classic Style Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="<?php echo __HOME_CSS__; ?>bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="<?php echo __HOME_CSS__; ?>style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script src="<?php echo __HOME_JS__; ?>jquery.min.js"></script>
+<!-- //js -->
+<!-- cart -->
+<script src="<?php echo __HOME_JS__; ?>simpleCart.min.js"></script>
+<!-- cart -->
+<!-- for bootstrap working -->
+<script type="text/javascript" src="<?php echo __HOME_JS__; ?>bootstrap-3.1.1.min.js"></script>
+<!-- //for bootstrap working -->
+<!-- animation-effect -->
+<link href="<?php echo __HOME_CSS__; ?>animate.min.css" rel="stylesheet"> 
+<script src="<?php echo __HOME_JS__; ?>wow.min.js"></script>
+<script>
+ new WOW().init();
+</script>
+<!-- //animation-effect -->
+<!--<link href='https://fonts.googleapis.com/css?family=Cabin:400,500,600,700' rel='stylesheet' type='text/css'>-->
+<!--<link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css'></head>-->
+	
+<body>
+<!-- header -->
+<?php include_once __HOME_COMMON__."header_uk.html"; ?>
+<!-- //header -->
+<!--banner-->
+
+<?php include_once __HOME_COMMON__."top_uk.html"; ?>
+<!-- contact -->
+	<div class="contact">
+		<div class="container">
+			<div class="col-md-8 contact-grids1 animated wow fadeInRight" data-wow-delay=".5s">
+				<form action="#" method="post" id="myform">
+					<div class="contact-form2">
+						<h4>Name</h4>
+
+						<input type="text" name="uname" id="uname"value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
+
+
+					</div>
+
+
+					<div class="contact-form2">
+						<h4>Email</h4>
+
+						<input type="email" name="uemail" id="uemail" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+
+
+					</div>
+					<div class="contact-form2">
+						<h4>Telephone</h4>
+
+						<input type="text" name="uphone" id="uphone" value="Telephone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Telephone';}" required="">
+
+
+					</div>
+
+
+					<div class="contact-me ">
+						<h4>Message</h4>
+
+						<textarea name="umessage" id="umessage" onfocus="this.value = '' ;" onblur="if (this.value == '') {this.value = 'Message...';}" required=""> Message... </textarea>
+
+					</div>
+
+					<div class="clearfix"> </div>
+					<input type="submit" id="sub" value="submit">
+				</form>
+				
+			</div>
+			
+			<div class="col-md-4 contact-grids">
+				<div class=" contact-grid animated wow fadeInLeft" data-wow-delay=".5s">
+					<div class="contact-grid1">
+						<div class="contact-grid2 ">
+							<i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
+						</div>
+						<div class="contact-grid3">
+							<h4>Address</h4>
+							<p>12K Street, 45 Building Road <span>New York City.</span></p>
+						</div>
+					</div>
+				</div>
+				<div class=" contact-grid animated wow fadeInUp" data-wow-delay=".5s">
+					<div class="contact-grid1">
+						<div class="contact-grid2 contact-grid4">
+							<i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>
+						</div>
+						<div class="contact-grid3">
+							<h4>Call Us</h4>
+							<p>+1234 758 839<span>+1273 748 730</span></p>
+						</div>
+					</div>
+				</div>
+				<div class=" contact-grid animated wow fadeInRight" data-wow-delay=".5s">
+					<div class="contact-grid1">
+						<div class="contact-grid2 contact-grid5">
+							<i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
+						</div>
+						<div class="contact-grid3">
+							<h4>Email</h4>
+							<p><a href="#">info@example1.com</a><span><a href="#">info@example2.com</a></span></p>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#sub").click(function () {
+            $.post(
+                'index.php?g=home&c=index&a=guestbook',
+                $("#myform").serialize(),
+                function (result) {
+                    if(result.error == 200){
+                        alert(result.mess+"\n点击确定按钮返回首页");
+                        window.location.href="index.php";
+
+                    }else{
+                        window.location.href="index.php?g=home&c=index&a=contact";
+                    }
+                },
+                "json"
+            );
+            return false;
+        });
+    });
+
+
+
+</script>
+	<!--<div class="map">-->
+		<!--<iframe class="animated wow fadeInLeft" data-wow-delay=".5s" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3019.9579945977393!2d-73.87657738464283!3d40.806916839740346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2f510a78ff341%3A0xe5b1e682c2e91238!2sNYS+Agriculture+%26+Markets!5e0!3m2!1sen!2sin!4v1456403781501" frameborder="0" style="border:0" allowfullscreen></iframe>-->
+		<!--</div >-->
+<!-- //contact -->
+
+<!-- footer -->
+<?php include_once __HOME_COMMON__."footer.html"; ?>
+<!-- //footer -->
+</body>
+</html>

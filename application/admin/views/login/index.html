@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>系统后台登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <link href="<?php echo __ADMIN_CSS__ ;?>bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Custom Theme files -->
+    <link href="<?php echo __ADMIN_CSS__ ;?>style.css" rel="stylesheet" type="text/css" media="all"/>
+    <!--js-->
+    <script src="<?php echo __ADMIN_JS__ ;?>jquery-2.1.1.min.js"></script>
+    <!--icons-css-->
+    <link href="<?php echo __ADMIN_CSS__ ;?>font-awesome.css" rel="stylesheet">
+    <!--Google Fonts-->
+    <!--<link href='http://fonts.useso.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>-->
+    <!--<link href='http://fonts.useso.com/css?family=Work+Sans:400,500,600' rel='stylesheet' type='text/css'>-->
+    <!--static chart-->
+</head>
+<body>
+<div class="login-page">
+    <div class="login-main">
+        <div class="login-head">
+            <h1>后台系统登陆</h1>
+        </div>
+        <div class="login-block">
+            <form action="index.php?g=admin&c=login&a=login" method="post" id="loginform">
+                <div class="form-group">
+                    <div class="alert alert-success" id="alertmess" role="alert">Your info has been saved.</div>
+                </div>
+                <input type="text" name="account" id="account" placeholder="Account" required="">
+                <input type="password" name="password" id="password"  placeholder="Password" value="">
+                <div class="forgot-top-grids">
+                    <div class="forgot-grid">
+                        <div class="checkbox">
+                            <label>
+                                <input name="sysremember" type="checkbox">Remember Me
+                            </label>
+                        </div>
+                    </div>
+                    <!--<div class="forgot">-->
+                    <!--class="lock"-->
+                        <!--<a href="#">Forgot password?</a>-->
+                    <!--</div>-->
+                    <div class="clearfix"></div>
+                </div>
+                <input type="submit" id="loginbtn" value="Login">
+
+            </form>
+            <h5><a href="index.html">返回网站首页</a></h5>
+        </div>
+    </div>
+</div>
+<!--inner block end here-->
+<!--copy rights start here-->
+<div class="copyrights">
+    <p>Copyright &copy; 2016.Company name All rights reserved.<a target="_blank" href=""></a>
+    </p>
+</div>
+<!--COPY rights end here-->
+
+<!--scrolling js-->
+<script src="<?php echo __ADMIN_JS__ ;?>jquery.nicescroll.js"></script>
+<script src="<?php echo __ADMIN_JS__ ;?>scripts.js"></script>
+<!--//scrolling js-->
+<script src="<?php echo __ADMIN_JS__ ;?>bootstrap.js"></script>
+<!-- mother grid end here-->
+<script type="text/javascript">
+    $(function () {
+        function check() {
+            var flag = true;
+            $("#account").blur(function () {
+                if ($(this).val() == "" || $(this).val() == null) {
+                    $("#alertmess").html("用户名不允许为空");
+                    flag = false;
+                    return;
+                }
+
+            }).focus(function () {
+
+                $("#alertmess").html("Your info has been saved.");
+
+            });
+            $("#password").blur(function () {
+                if ($(this).val() == "" || $(this).val() == null) {
+                    $("#alertmess").html("密码不允许为空");
+                    flag=false;
+                    return;
+                }
+            }).focus(function () {
+
+                $("#alertmess").html("Your info has been saved.");
+
+            });
+            return true;
+        }
+
+        $(function () {
+            if (!check()) {
+                return false;
+            }
+
+            $("#loginbtn").click(function () {
+                if (!check()) {
+                    return false;
+                }
+
+                $.post(
+                    'index.php?g=admin&c=login&a=login',
+                    $("#loginform").serialize(),
+                    function (result) {
+
+                        if (result.errno == 200) {
+                            // alert(result.mess + "\n点击确认进入系统后台");
+                            window.location.href = "index.php?g=admin&c=main&a=main";
+                        } else {
+                            $("#alertmess").html(result.mess);
+                        }
+
+                    },
+                    "json"
+                );
+                //$("#regform")[0].reset();
+
+                return false;
+
+            });
+        })
+    });
+</script>
+</body>
+</html>
+
+
+                      
+						

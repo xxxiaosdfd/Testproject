@@ -1,0 +1,227 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>商品管理</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+<link href="<?php echo __ADMIN_CSS__ ;?>bootstrap.css" rel="stylesheet" type="text/css" media="all">
+<!-- Custom Theme files -->
+<link href="<?php echo __ADMIN_CSS__ ;?>style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="<?php echo __ADMIN_CSS__ ;?>styles.css" rel="stylesheet">
+<!--js-->
+<script src="<?php echo __ADMIN_JS__ ;?>jquery-2.1.1.min.js"></script> 
+<!--icons-css-->
+<link href="<?php echo __ADMIN_CSS__ ;?>font-awesome.css" rel="stylesheet"> 
+<!--Google Fonts-->
+<!--<link href='http://fonts.useso.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>-->
+<!--<link href='http://fonts.useso.com/css?family=Work+Sans:400,500,600' rel='stylesheet' type='text/css'>-->
+<!--//skycons-icons-->
+</head>
+<body>	
+<div class="page-container">	
+   <div class="left-content">
+	   <div class="mother-grid-inner">
+           <!--顶部导航代码开始-->
+           <?php include_once __ADMIN_COMMON__."main_top.html";?>
+           <!--顶部导航代码结束-->
+	</div>
+
+<!-- script-for sticky-nav -->
+		<script>
+		$(document).ready(function() {
+			 var navoffeset=$(".header-main").offset().top;
+			 $(window).scroll(function(){
+				var scrollpos=$(window).scrollTop();
+				if(scrollpos >=navoffeset){
+					// $(".header-main").addClass("fixed");
+				}else{
+					$(".header-main").removeClass("fixed");
+				}
+			 });
+
+		});
+		</script>
+		<!-- /script-for sticky-nav -->
+<!--inner block start here-->
+<!--<div class="inner-block">-->
+
+
+          <div class="clearfix"> </div>
+   <!--</div>-->
+<!--</div>-->
+
+       <div class="row">
+           <div class="col-md-12">
+               <div class="panel panel-default">
+                   <div class="panel-heading">已上线商品</div>
+                   <div class="panel-body">
+                       <table id="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true"
+                              data-search="true"></table>
+                   </div>
+               </div>
+           </div>
+       </div><!--/.row-->
+<!--inner block end here-->
+       <!--底部导航代码开始-->
+       <?php include_once __ADMIN_COMMON__."main_rights.html";?>
+       <!--底部导航代码结束-->
+</div>
+
+<!--slider menu-->
+    <!--边栏导航代码开始-->
+    <?php include_once __ADMIN_COMMON__."main_aside.html";?>
+    <!--边栏导航代码结束-->
+	<div class="clearfix"> </div>
+</div>
+<!--slide bar menu end here-->
+<script>
+var toggle = true;
+            
+$(".sidebar-icon").click(function() {                
+  if (toggle)
+  {
+    $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+    $("#menu span").css({"position":"absolute"});
+  }
+  else
+  {
+    $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+    setTimeout(function() {
+      $("#menu span").css({"position":"relative"});
+    }, 400);
+  }               
+                toggle = !toggle;
+            });
+</script>
+<!--scrolling js-->
+		<script src="<?php echo __ADMIN_JS__ ;?>jquery.nicescroll.js"></script>
+		<script src="<?php echo __ADMIN_JS__ ;?>scripts.js"></script>
+		<!--//scrolling js-->
+<script src="<?php echo __ADMIN_JS__ ;?>bootstrap.js"> </script>
+
+<script src="<?php echo __ADMIN_JS__ ;?>jquery-2.1.1.min.js"></script>
+
+
+<script src="<?php echo __ADMIN_JS__ ;?>bootstrap-table.js"></script>
+<!-- mother grid end here-->
+<script type="text/javascript">
+    $("#table").bootstrapTable({
+        url:"index.php?g=admin&c=onlinegoods&a=list",
+        cache:false,
+        striped:true,
+        pagination:true,
+        pageList:[10,20],
+        pageSize:10,
+        pageNumber:1,
+        sidePagination:'server',
+        queryParams:function (params) {
+            return {
+                pageSize:params.limit,
+                pageIndex:(params.offset/params.limit)+1,
+                like:params.search
+            }
+        },
+        columns:[
+            {
+                checkbox:true,
+                field:'asid',
+                title:'编号',
+                align:'center',
+            },
+            {
+                field: 'assid', // 返回json数据中的name
+                title: '商品编号', // 表格表头显示文字
+                align: 'center', // 左右居中
+                valign: 'middle', // 上下居中
+                width: 120
+            },
+            {
+                field: 'clothesName',
+                title: '商品名称',
+                align: 'center',
+                valign: 'middle',
+                width: 160
+            },{
+                field: 'GsizeGame',
+                title: '商品尺码',
+                align: 'center',
+                valign: 'middle',
+                width: 160
+            }, {
+                field: 'GcolorGame',
+                title: '商品颜色',
+                align: 'center',
+                valign: 'middle',
+                width: 200
+            }, {
+                field: 'GsPrice',
+                title: '商品价格',
+                align: 'center',
+                valign: 'middle',
+                width: 150
+            },{
+                field: 'GsNum',
+                title: '商品库存',
+                align: 'center',
+                valign: 'middle',
+                width: 150
+            },{
+                field: 'Addtime',
+                title: '添加时间',
+                align: 'center',
+                valign: 'middle',
+                width: 150
+            },  {
+                title: "下线",
+                align: 'center',
+                valign: 'middle',
+                width: 120, // 定义列的宽度，单位为像素px
+                formatter:function (value,row,index) {
+                    return '<button class="btn btn-primary btn-sm" onclick="del(\''+row.asid+'\')">删除</button>';
+                }
+            },   {
+                title: "修改商品",
+                align: 'center',
+                valign: 'middle',
+                width: 120, // 定义列的宽度，单位为像素px
+                formatter:function (value,row,index) {
+                    return '<button class="btn btn-primary btn-sm" onclick="revise(\''+row.asid+'\')">修改</button>';
+                }
+            },
+        ],
+        onLoadSuccess:function () {
+
+        },onLoadError:function () {
+            console.info("加载数据失败");
+        }
+    })
+    function del(asid) {
+        var result=confirm("确认要下线该商品吗？");
+        if(result){
+            window.location.href="index.php?g=admin&c=onlinegoods&a=del&gsid="+asid;
+        }else{
+            window.location.href="index.php?g=admin&c=onlinegoods&a=onlinegoods";
+        }
+    }
+    function revise(asid){
+        var result=confirm("确认要修改该商品数据吗？");
+        if(result){
+            window.location.href="index.php?g=admin&c=updategoods&a=updategoods&gsid="+asid;
+        }else{
+            window.location.href="index.php?g=admin&c=onlinegoods&a=onlinegoods";
+        }
+    }
+
+</script>
+
+</body>
+</html>
+
+
+                      
+						

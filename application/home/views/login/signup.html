@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>注册页面</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Classic Style Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="<?php echo __HOME_CSS__; ?>bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="<?php echo __HOME_CSS__; ?>style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script src="<?php echo __HOME_JS__; ?>jquery.min.js"></script>
+<!-- //js -->
+<!-- cart -->
+<script src="<?php echo __HOME_JS__; ?>simpleCart.min.js"></script>
+<!-- cart -->
+<!-- for bootstrap working -->
+<script type="text/javascript" src="<?php echo __HOME_JS__; ?>bootstrap-3.1.1.min.js"></script>
+<!-- //for bootstrap working -->
+<!-- animation-effect -->
+<link href="<?php echo __HOME_CSS__; ?>animate.min.css" rel="stylesheet"> 
+<script src="<?php echo __HOME_JS__; ?>wow.min.js"></script>
+<script>
+ new WOW().init();
+</script>
+<!-- //animation-effect -->
+<!--<link href='https://fonts.googleapis.com/css?family=Cabin:400,500,600,700' rel='stylesheet' type='text/css'>-->
+<!--<link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css'></head>-->
+	
+<body>
+<!-- header -->
+<?php include_once __HOME_COMMON__."header_uk.html"; ?>
+<!-- //header -->
+<!--banner-->
+<?php include_once __HOME_COMMON__."top_uk.html"; ?>
+<!-- contact -->
+	<div class="login">
+		<div class="container">
+		<form action="#" method="post" id="regform">
+			<div class="col-md-6 login-do1 animated wow fadeInLeft" data-wow-delay=".5s">
+				<div class="alert alert-success" id="alertmess" role="alert">Your info has been saved.</div>
+
+				<div class="login-mail">
+
+					<input type="text" name="uname" id="uname" placeholder="用户名"  required="">
+					<!--<i class="glyphicon glyphicon-envelope"></i>-->
+				</div>
+				<div class="login-mail">
+					<input type="text" name="uphone" id="uphone" placeholder="手机号" required="">
+					<!--<i class="glyphicon glyphicon-lock"></i>-->
+				</div>
+				<div class="login-mail">
+					<input type="password" name="upwd" id="upwd" placeholder="密码" required="">
+					<!--<i class="glyphicon glyphicon-lock"></i>-->
+				</div>
+				<div class="login-mail">
+					<!--<label for="reupwd" class="sr-only">Re-type Password</label>-->
+					<input type="password"  id="reupwd" placeholder="确认密码"required="">
+					<!--<i class="glyphicon glyphicon-lock"></i>-->
+				</div>
+				<a class="news-letter" href="#">
+					<label class="checkbox1"><input type="checkbox" name="checkbox" ><i> </i>我同意这些条款</label>
+				</a>
+
+
+	
+			</div>
+			<div class="col-md-6 login-do animated wow fadeInRight" data-wow-delay=".5s">
+				<label class="hvr-sweep-to-top login-sub">
+					<input type="submit" id="sub" value="Sign Up">
+					</label>
+					<p>Already Sign Up</p>
+				<a href="index.php?g=home&c=login&a=index" class="hvr-sweep-to-top">Login</a>
+			</div>
+			<div class="clearfix"> </div>
+			</form>
+		</div>
+
+
+	</div>
+
+<script type="text/javascript">
+    function checkName() {
+        var flag = false;
+        $("#uname").blur(function () {
+            if ($(this).val() == "" || $(this).val() == null) {
+                $("#alertmess").html("用户名不允许为空");
+            }else {
+                var regExp = /^[A-z]{4,6}/;
+                var flagc = regExp.test($("#uname").val());
+                if (flagc == false) {
+                    $("#alertmess").html("用户名只能字母4-6位");
+                    flag = false;
+                    return;
+                }
+                $.post(
+                    'index.php?g=home&c=user&a=checkuser',
+                    {"uname": $(this).val()},
+                    function (result) {
+                        if (result == 1) {
+                            $("#alertmess").html("用户名已存在");
+                        } else {
+                            $("#alertmess").html("用户名可用");
+                            flag = true;
+                        }
+                    });
+
+            }
+        }).focus(function () {
+            $("#alertmess").html("Your info has been saved.");
+
+        });
+        if ($("#uname").val() != "" && $("#uname").val() != null) {
+
+            flag = true;
+
+        }
+        return flag;
+    }
+
+    // function checkEmail() {
+    //     var flag = false;
+    //     $("#uemail").blur(function () {
+    //         if ($(this).val() == "" || $(this).val() == null) {
+    //             $("#alertmess").html("邮箱不允许为空");
+    //
+    //         }else {
+    //             var regExp = /^\w{4,16}@[a-zA-z0-9]{2,}\.[a-z]{2,}$/;
+    //             var flagc = regExp.test($(this).val());
+    //             if (flagc == false) {
+    //                 $("#alertmess").html("邮箱格式不正确");
+    //                 flag = false;
+    //                 return;
+    //             } else {
+    //                 $("#alertmess").html("邮箱可用");
+    //                 flag = true;
+    //             }
+    //
+    //         }
+    //     }).focus(function () {
+    //         $("#alertmess").html("Your info has been saved.");
+    //     });
+    //     if ($("#uemail").val() != "" && $("#uemail").val() != null) {
+    //         flag = true;
+    //     }
+    //     return flag;
+    // }
+    function checkPhone() {
+        var flag = false;
+        $("#uphone").blur(function () {
+            if ($(this).val() == "" || $(this).val() == null) {
+                $("#alertmess").html("手机号不允许为空");
+
+            }else {
+                var regExp = /\d{11}$/;
+                var flagc = regExp.test($(this).val());
+                if (flagc == false) {
+                    $("#alertmess").html("手机号格式不正确");
+                    flag = false;
+                    return;
+                } else {
+                    $("#alertmess").html("手机号可用");
+                    flag = true;
+                }
+
+            }
+        }).focus(function () {
+            $("#alertmess").html("Your info has been saved.");
+        });
+        if ($("#uphone").val() != "" && $("#uphone").val() != null) {
+            flag = true;
+        }
+        return flag;
+    }
+    function checkUpwd() {
+        var flag = false;
+        $("#upwd").blur(function () {
+            if ($(this).val() == "" || $(this).val() == null) {
+                $("#alertmess").html("密码不允许为空");
+
+            }else {
+                var regExp = /[0-9]{6}/;
+                var flagc = regExp.test($(this).val());
+                if (flagc == false) {
+                    $("#alertmess").html("密码只能六个数字");
+                    flag = false;
+                    return;
+                } else {
+                    $("#alertmess").html("密码可用");
+                    flag = true;
+                }
+            }
+        }).focus(function () {
+            $("#alertmess").html("Your info has been saved.");
+        });
+        if ($("#upwd").val() != "" && $("#upwd").val() != null) {
+            flag = true;
+        }
+        return flag;
+    }
+
+    function checkReupwd() {
+        var flag = false;
+        $("#reupwd").blur(function () {
+            if ($(this).val() == "" || $(this).val() == null) {
+                $("#alertmess").html("确认密码不允许为空");
+            } else {
+                flag = true;
+            }
+            if ($(this).val() != $("#upwd").val()) {
+                $("#alertmess").html("两次密码不一致");
+            }
+        }).focus(function () {
+            $("#alertmess").html("Your info has been saved.");
+        });
+        if ($("#upwd").val() == $("#reupwd").val()) {
+            flag = true;
+        }
+        return flag;
+    }
+
+    $(function () {
+        checkName();
+        checkPhone();
+        checkUpwd();
+        checkReupwd();
+
+        $("#sub").click(function () {
+            if (checkName() && checkPhone() && checkUpwd() && checkReupwd()) {
+                $.post(
+                    'index.php?g=home&c=user&a=register',
+                    $("#regform").serialize(),
+                    function (result) {
+                        $("#alertmess").html(result.mess);
+
+                    },
+                    "json"
+                );
+
+                $("#regform")[0].reset();
+
+            }
+            return false;
+        });
+    });
+</script>
+<!--<div class="social animated wow fadeInUp" data-wow-delay=".1s">-->
+	<!--<div class="container">-->
+		<!--<div class="col-sm-3 social-ic">-->
+			<!--<a href="#">FACEBOOK</a>-->
+		<!--</div>-->
+		<!--<div class="col-sm-3 social-ic">-->
+			<!--<a href="#">TWITTER</a>-->
+		<!--</div>-->
+		<!--<div class="col-sm-3 social-ic">-->
+			<!--<a href="#">GOOGLE+</a>-->
+		<!--</div>-->
+		<!--<div class="col-sm-3 social-ic">-->
+			<!--<a href="#">PINTEREST</a>-->
+		<!--</div>-->
+	<!--<div class="clearfix"></div>-->
+	<!--</div>-->
+<!--</div>-->
+
+<!-- footer -->
+<?php include_once __HOME_COMMON__."footer.html"; ?>
+<!-- //footer -->
+</body>
+</html>

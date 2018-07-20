@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>购物车页面</title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="Classic Style Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <!-- //for-mobile-apps -->
+    <link href="<?php echo __HOME_CSS__; ?>bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="<?php echo __HOME_CSS__; ?>style.css" rel="stylesheet" type="text/css" media="all"/>
+    <!-- js -->
+    <script src="<?php echo __HOME_JS__; ?>jquery.min.js"></script>
+    <!-- //js -->
+    <!-- cart -->
+    <script src="<?php echo __HOME_JS__; ?>simpleCart.min.js"></script>
+    <!-- cart -->
+    <!-- for bootstrap working -->
+    <script type="text/javascript" src="<?php echo __HOME_JS__; ?>bootstrap-3.1.1.min.js"></script>
+    <!-- //for bootstrap working -->
+    <!-- animation-effect -->
+    <link href="<?php echo __HOME_CSS__; ?>animate.min.css" rel="stylesheet">
+    <script src="<?php echo __HOME_JS__; ?>wow.min.js"></script>
+    <link href="<?php echo __HOME_CSS__; ?>global.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo __HOME_CSS__; ?>layout.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="<?php echo __HOME_JS__; ?>jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="<?php echo __HOME_JS__; ?>shopping.js"></script>
+
+    <script>
+        new WOW().init();
+    </script>
+    <!-- //animation-effect -->
+    <!--<link href='https://fonts.googleapis.com/css?family=Cabin:400,500,600,700' rel='stylesheet' type='text/css'>-->
+    <!--<link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css'></head>-->
+
+<body>
+<!-- header -->
+<?php include_once __HOME_COMMON__."header.html"; ?>
+<!-- //header -->
+<!--banner-->
+<?php include_once __HOME_COMMON__."top.html"; ?>
+<!-- contact -->
+<div class="check-out">
+    <div class="container">
+
+        <script>$(document).ready(function (c) {
+            $('.close1').on('click', function (c) {
+                $('.cross').fadeOut('slow', function (c) {
+                    $('.cross').remove();
+                });
+            });
+        });
+        </script>
+        <script>$(document).ready(function (c) {
+            $('.close2').on('click', function (c) {
+                $('.cross1').fadeOut('slow', function (c) {
+                    $('.cross1').remove();
+                });
+            });
+        });
+        </script>
+        <script>$(document).ready(function (c) {
+            $('.close3').on('click', function (c) {
+                $('.cross2').fadeOut('slow', function (c) {
+                    $('.cross2').remove();
+                });
+            });
+        });
+        </script>
+
+
+    </div>
+</div>
+
+
+<div id="main">
+
+    <div class="shopping_list_top">您已选购以下商品</div>
+    <div class="shopping_list_border">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr class="shopping_list_title">
+
+                <td class="shopping_list_title_1">商品名</td>
+                <td class="shopping_list_title_2">单品积分</td>
+                <td class="shopping_list_title_3">市场价</td>
+                <td class="shopping_list_title_4">当当价</td>
+                <td class="shopping_list_title_5">数量</td>
+                <td class="shopping_list_title_6">删除</td>
+            </tr>
+        </table>
+        <form action="" method="post" name="myshopping" id="myshopping">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" id="myTableProduct">
+            <?php
+		foreach ($this->data["shopping"] as $key => $item) {
+            $i=$key+1;
+            echo '<tr class="shopping_product_list" id="shoppingProduct_0'. $i .'">';
+
+                for($b=1;$b<=count($item);$b++){
+
+                $c="{$item["shopnum"]}";
+                }
+
+
+
+                echo' <td class="shopping_product_list_1"><a href="#" class="blue">'.$item["ClothesName"].'</a></td>
+                    <td class="shopping_product_list_2"><label>'.$item["shoppingid"].'</label></td>
+                    <td class="shopping_product_list_3">￥<label>'.$item["GsPrice"].'</label></td>
+                    <td class="shopping_product_list_4">￥<label>'.$item["GsPrice"].'</label> (100折)</td>';
+
+                echo'<td class="shopping_product_list_5"><input type="text" value="'.$c.'"></td>';
+
+                echo'<td class="shopping_product_list_6"><a href="javascript:void(0)" class="blue">删除</a></td>';
+
+                echo '</tr>';
+            }
+
+            ?>
+        </table>
+        <div class="shopping_list_end">
+            <div><a id="removeAllProduct" href="javascript:void(0);">清空购物车</a></div>
+            <ul>
+                <li class="shopping_list_end_1"><input name="" type="image"
+                                                       src="<?php echo __HOME_IMAGES__; ?>shopping_balance.gif"></li>
+                <li class="shopping_list_end_2">￥<label id="product_total"></label></li>
+                <li class="shopping_list_end_3">商品金额总计：</li>
+                <li class="shopping_list_end_4">您共节省金额：￥<label class="shopping_list_end_yellow"
+                                                               id="product_save"></label><br/>
+                    可获商品积分：<label class="shopping_list_end_yellow" id="product_integral"></label>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </form>
+</div>
+<!--quantity-->
+<script>
+    $('.value-plus').on('click', function () {
+        var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) + 1;
+        divUpd.text(newVal);
+    });
+
+    $('.value-minus').on('click', function () {
+        var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) - 1;
+        if (newVal >= 1) divUpd.text(newVal);
+    });
+</script>
+<!--quantity-->
+
+
+<!-- footer -->
+<?php include_once __HOME_COMMON__."footer.html"; ?>
+<!-- //footer -->
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" method="post" id="addform">
+    <input type="hidden" name="gid" value="<?php echo $this->data['gid'] ?>" />
+    <input type="hidden" name="gname" value="<?php echo $this->data['gname'] ?>" />
+    <input type="hidden" name="gimages" value="<?php echo $this->data['gimages'] ?>" />
+    <input id="min" name="" type="button" value="-" />
+    <input id="text_box" name="gnum" type="text" size="5" value="1" />
+    <input id="add" name="" type="button" value="+" />
+    <input type="hidden" name="gprice" value="<?php echo $this->data['gprice']*0.9 ?>" />
+    <button type="submit" id="addcart" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+</form>
+<button class="w3ls-cart w3ls-cart-like"><i class="fa fa-heart-o" aria-hidden="true"></i> Add to Wishlist</button>
+
+</body>
+
+<script>
+    $(function () {
+        $("#addcart").click(function () {
+            $.post(
+                'index.php?g=home&c=cart&a=addcart',
+                $("#addform").serialize(),
+                function (result) {
+                    if(result.errno==200){
+                        alert(result.mess+"\n");
+                    }else {
+                        alert(result.mess+"\n请重试");
+                    }
+                },
+                "json"
+            );
+            return false;
+        });
+    });
+
+</script>
+</html>

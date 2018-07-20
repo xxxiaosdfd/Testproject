@@ -1,0 +1,224 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>报表显示</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <link href="<?php echo __ADMIN_CSS__ ;?>bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Custom Theme files -->
+    <link href="<?php echo __ADMIN_CSS__ ;?>style.css" rel="stylesheet" type="text/css" media="all"/>
+    <!--js-->
+    <script src="<?php echo __ADMIN_JS__ ;?>jquery-2.1.1.min.js"></script>
+    <!--icons-css-->
+    <link href="<?php echo __ADMIN_CSS__ ;?>font-awesome.css" rel="stylesheet">
+    <!--Google Fonts-->
+    <!--<link href='http://fonts.useso.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>-->
+    <!--<link href='http://fonts.useso.com/css?family=Work+Sans:400,500,600' rel='stylesheet' type='text/css'>-->
+    <!--static chart-->
+    <script src="<?php echo __ADMIN_JS__ ;?>Chart.min.js"></script>
+    <script src="<?php echo __ADMIN_JS__ ;?>echarts.min.js"></script>
+    <script src="<?php echo __ADMIN_JS__ ;?>jquery-1.12.4.js"></script>
+    <!--//charts-->
+</head>
+<body>
+<div class="page-container">
+    <div class="left-content">
+        <div class="mother-grid-inner">
+            <!--顶部导航代码开始-->
+            <?php include_once __ADMIN_COMMON__."main_top.html";?>
+            <!--顶部导航代码结束-->
+            <!-- script-for sticky-nav -->
+            <script>
+                $(document).ready(function () {
+                    var navoffeset = $(".header-main").offset().top;
+                    $(window).scroll(function () {
+                        var scrollpos = $(window).scrollTop();
+                        if (scrollpos >= navoffeset) {
+                            // $(".header-main").addClass("fixed");
+                        } else {
+                            $(".header-main").removeClass("fixed");
+                        }
+                    });
+
+                });
+            </script>
+            <!-- /script-for sticky-nav -->
+            <!--inner block start here-->
+            <div class="inner-block">
+                <div class="chart-main-block">
+                    <div class="chart-first-line">
+                        <div class="col-md-6 chart-blo-1">
+                            <div id="mainn" style="width: 400px;height:600px;"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="main" style="width: 400px;height:600px;"></div>
+            <!--inner block end here-->
+            <!--底部导航代码开始-->
+            <?php include_once __ADMIN_COMMON__."main_rights.html";?>
+            <!--底部导航代码结束-->
+        </div>
+    </div>
+    <!--slider menu-->
+    <!--边栏导航代码开始-->
+    <?php include_once __ADMIN_COMMON__."main_aside.html";?>
+    <!--边栏导航代码结束-->
+    <div class="clearfix"></div>
+</div>
+<!--slide bar menu end here-->
+<script>
+    var toggle = true;
+
+    $(".sidebar-icon").click(function () {
+        if (toggle) {
+            $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+            $("#menu span").css({"position": "absolute"});
+        }
+        else {
+            $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+            setTimeout(function () {
+                $("#menu span").css({"position": "relative"});
+            }, 400);
+        }
+        toggle = !toggle;
+    });
+</script>
+<!--scrolling js-->
+<script src="<?php echo __ADMIN_JS__ ;?>jquery.nicescroll.js"></script>
+<script src="<?php echo __ADMIN_JS__ ;?>scripts.js"></script>
+<!--//scrolling js-->
+<script src="<?php echo __ADMIN_JS__ ;?>bootstrap.js"></script>
+<!-- mother grid end here-->
+<script type="text/javascript">
+
+    var args = Array();
+    var argss = Array();
+
+    function flashdata() {
+        $.ajax({
+            url: "index.php?g=admin&c=charts&a=getGoodsNums",
+            type: "post",
+            async: false,
+            dataType: "json",
+            success: function (result) {
+
+                for (var i = 0; i < result.length; i++) {
+                    args.push(result[i].gname);
+                    argss.push(result[i].gnum);
+                }
+            },
+            error: function () {
+                alert("服务器出错！");
+            }
+        });
+    }
+
+    function setcharts() {
+
+        var myChart = echarts.init(document.getElementById('main'));
+
+        var option = {
+            title: {
+                text: '商品/库存'
+            },
+            tooltip: {},
+            legend: {
+                data: ['销量']
+            },
+            xAxis: {
+                data: args,
+                name: '商品名称'
+            },
+            yAxis: {name: '库存量'},
+            series: [{
+                name: '库存量',
+                type: 'bar',
+                data: argss
+            }]
+        };
+
+        myChart.setOption(option);
+
+    }
+
+    $(function () {
+
+        flashdata();
+        setcharts();
+    })
+
+</script>
+<script type="text/javascript">
+
+    var args1 = Array();
+    var argss1 = Array();
+
+    function flashdataa() {
+        $.ajax({
+            url: "index.php?g=admin&c=charts&a=getGoodsNums",
+            type: "post",
+            async: false,
+            dataType: "json",
+            success: function (result) {
+
+                for (var i = 0; i < result.length; i++) {
+                    args1.push(result[i].gname);
+                    argss1.push(result[i].gnum);
+                }
+            },
+            error: function () {
+                alert("服务器出错！");
+            }
+        });
+    }
+
+    function setchartss() {
+
+        var myChart = echarts.init(document.getElementById('mainn'));
+
+        var option = {
+            title: {
+                text: '商品/库存'
+            },
+            tooltip: {},
+            legend: {
+                data: ['销量']
+            },
+            xAxis: {
+                data: args1,
+                name: '商品名称'
+            },
+            yAxis: {name: '库存量'},
+            series: [{
+                name: '库存量',
+                type: 'line',
+                data: argss1
+            }]
+        };
+
+        myChart.setOption(option);
+
+    }
+
+    $(function () {
+
+        flashdataa();
+        setchartss();
+    })
+
+</script>
+</body>
+</html>					
